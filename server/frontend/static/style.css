@@ -124,3 +124,39 @@ img{
     text-align:center;
     box-shadow: 2px 2px 3px #999;  
 }
+iframe {
+    /* margin-left: 16rem; */
+    width: (100% - 0px);
+
+}
+
+.left {
+    margin-top: 2rem;
+    background-color: rgb(41, 224, 233);
+    margin-left: 2rem;
+    margin-right: 2rem;
+    padding: 0 50px 0 20px;
+    color: rgb(255, 255, 255);
+
+}
+
+.left h2 {
+    text-align: center;
+    padding-bottom: 20px;
+    margin-right: 4rem;
+}
+
+
+.left .new-flex{
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 20px;
+    text-align: center;
+    
+}
+
+.left .new-flex .verti{
+    padding: 0 1px 0 1px;
+    background-color: white;
+    margin-left: 4rem;
+}
