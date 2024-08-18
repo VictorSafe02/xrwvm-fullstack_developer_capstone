@@ -151,7 +151,7 @@ def get_dealer_reviews(request, dealer_id):
         return JsonResponse({"status": 400, "message": "Bad Request"})
 
 
-def add_review(request):  
+def add_review(request):
     if not (request.user.is_anonymous is False):
         print("add_review1 request successful!")
         data = json.loads(request.body)
