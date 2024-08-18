@@ -76,8 +76,8 @@ def registration(request):
     if not username_exist:
         # Create user in auth_user table
         user = User.objects.create_user(username=username,
-                                    first_name=first_name, last_name=last_name,
-                                    password=password, email=email)
+                                        first_name=first_name, last_name=last_name,
+                                        password=password, email=email)
         # Login the user and redirect to list page
         login(request, user)
         data = {"userName": username, "status": "Authenticated"}
@@ -112,17 +112,20 @@ def get_cars(request):
 # def get_dealer_details(request, dealer_id):
 # ...
 
+
 # Create a `add_review` view to submit a review
 # def add_review(request):
 # ...
-# Update the `get_dealerships` render list of dealerships all by default, particular state if state is passed
+# Update the `get_dealerships` render list of dealerships 
+# all by default, particular state if state is passed
 def get_dealerships(request, state="All"):
-    if(state == "All"):
+    if state == "All":
         endpoint = "/fetchDealers"
     else:
         endpoint = "/fetchDealers/"+state
     dealerships = get_request(endpoint)
-    return JsonResponse({"status": 200,"dealers": dealerships})
+    return JsonResponse({"status": 200, "dealers": dealerships})
+
 
 def get_dealer_details(request, dealer_id):
     if(dealer_id):
@@ -131,6 +134,7 @@ def get_dealer_details(request, dealer_id):
         return JsonResponse({"status": 200,"dealer": dealership})
     else:
         return JsonResponse({"status": 400,"message": "Bad Request"})
+
 
 def get_dealer_reviews(request, dealer_id):
     # if dealer id has been provided
@@ -144,10 +148,6 @@ def get_dealer_reviews(request, dealer_id):
         return JsonResponse({"status": 200,"reviews": reviews})
     else:
         return JsonResponse({"status": 400,"message": "Bad Request"})
-
-
-
-
 
 
 def add_review(request):
