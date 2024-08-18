@@ -76,26 +76,27 @@ def registration(request):
     if not username_exist:
         # Create user in auth_user table
         user = User.objects.create_user(username=username,
-                            first_name=first_name, last_name=last_name,
-                            password=password, email=email)
+                                    first_name=first_name, last_name=last_name,
+                                    password=password, email=email)
         # Login the user and redirect to list page
         login(request, user)
-        data = {"userName": username,"status": "Authenticated"}
+        data = {"userName": username, "status": "Authenticated"}
         return JsonResponse(data)
-    else :
-        data = {"userName": username,"error": "Already Registered"}
+    else:
+        data = {"userName": username, "error": "Already Registered"}
         return JsonResponse(data)
 
 
 def get_cars(request):
     count = CarMake.objects.filter().count()
     print(count)
-    if(count == 0):
+    if count == 0:
         initiate()
     car_models = CarModel.objects.select_related('car_make')
     cars = []
     for car_model in car_models:
-        cars.append({"CarModel":  car_model.name, "CarMake":  car_model.car_make.name})
+        cars.append({"CarModel":  car_model.name,
+                     "CarMake":  car_model.car_make.name})
     return JsonResponse({"CarModels": cars})
 
 # # Update the `get_dealerships` view to render the index page with
@@ -114,7 +115,7 @@ def get_cars(request):
 # Create a `add_review` view to submit a review
 # def add_review(request):
 # ...
-#Update the `get_dealerships` render list of dealerships all by default, particular state if state is passed
+# Update the `get_dealerships` render list of dealerships all by default, particular state if state is passed
 def get_dealerships(request, state="All"):
     if(state == "All"):
         endpoint = "/fetchDealers"
